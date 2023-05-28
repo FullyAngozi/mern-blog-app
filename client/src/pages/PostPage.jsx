@@ -10,7 +10,7 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/post/${id}`);
+        const response = await fetch(`https://mern-blog-app-43qr.onrender.com/post/${id}`);
         if (response.ok) {
           const data = await response.json();
           setData(data);
@@ -54,7 +54,7 @@ const PostPage = () => {
         </div>
       )}
       <div className="image">
-        <img src={`http://localhost:4000/${data.postImage}`} alt="" />
+        <img src={`https://mern-blog-app-43qr.onrender.com/${data.postImage}`} alt="" />
       </div>
       <div
         className="content"

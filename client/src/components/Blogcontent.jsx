@@ -8,7 +8,7 @@ const Blogcontent = ({ _id ,title, summary, postImage, author }) => {
       <div className="post">
         <div className="image">
           <Link to={`/post/${_id}`}>
-            <img src={"http://localhost:4000/" + postImage} alt="thumbnail" />
+            <img src={"https://mern-blog-app-43qr.onrender.com/" + postImage} alt="thumbnail" />
           </Link>
         </div>
         <div className="post-text">

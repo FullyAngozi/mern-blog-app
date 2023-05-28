@@ -13,7 +13,7 @@ const EditPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/post/${id}`);
+        const response = await fetch(`https://mern-blog-app-43qr.onrender.com/post/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch post");
         }
@@ -39,7 +39,7 @@ const EditPost = () => {
       data.set("post", post);
       data.set("postImage", postImage?.[0]);
 
-      const response = await fetch(`http://localhost:4000/post/${id}`, {
+      const response = await fetch(`https://mern-blog-app-43qr.onrender.com/post/${id}`, {
         method: "PUT",
         body: data,
         credentials: "include",

@@ -23,7 +23,7 @@ const CreatePost = () => {
     data.set('summary', summary )
     data.set('post', post )
     data.set('postImage', postImage[0] )
-   const response = await fetch("http://localhost:4000/post", {
+   const response = await fetch("https://mern-blog-app-43qr.onrender.com/post", {
         method: 'POST',
         body: data,
         credentials: 'include'

@@ -7,7 +7,7 @@ const IndexPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/post');
+        const response = await fetch('https://mern-blog-app-43qr.onrender.com/post');
         if (response.ok) {
           const posts = await response.json();
           setPosts(posts)
