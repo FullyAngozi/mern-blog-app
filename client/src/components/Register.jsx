@@ -1,6 +1,8 @@
 import { useState } from "react";
+import{ useNavigate} from "react-router-dom"
 
 const Register = () => {
+  const navigate = useNavigate()
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,13 +15,17 @@ const Register = () => {
     });
     if(response.status === 200) {
       alert("registration success")
+      navigate('/login')
     } else {
       alert("Action failed")
     }
 
     setUserName('')
     setPassword('')
+  
+
   }
+
   
   return (
     <>
