@@ -11,7 +11,7 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
-const config = require('../config.js')
+const config = require('./config.js')
 
 
 
@@ -172,6 +172,10 @@ app.get('/post/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch post' });
   }
 });
+
+app.get('/', (req, res) => {
+  res.json("hello")
+})
 
 
 // Start the server
