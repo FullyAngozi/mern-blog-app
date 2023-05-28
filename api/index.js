@@ -80,28 +80,33 @@ app.post("/logout", (req, res) => {
 });
 
 app.post("/post", uploadMiddleware.single("postImage"), async (req, res) => {
-  const { title, summary, post } = req.body;
-  const { filename } = req.file;
-  const ext = req.file.originalname.split(".").pop();
-  // Create a new filename with the extension
-  const newFilename = `${filename}.${ext}`;
-  fs.renameSync(`uploads/${filename}`, `uploads/${newFilename}`);
-  const { token } = req.cookies;
+  try {
+    const { title, summary, post } = req.body;
+    const { filename } = req.file;
+    const ext = req.file.originalname.split(".").pop();
+    // Create a new filename with the extension
+    const newFilename = `${filename}.${ext}`;
+    fs.renameSync(`uploads/${filename}`, `uploads/${newFilename}`);
+    const { token } = req.cookies;
 
-  jwt.verify(token, SecretKey, {}, async (err, data) => {
-    if (err) throw err;
-    const newPost = await Post.create({
-      title,
-      summary,
-      post,
-      postImage: newFilename,
-      author: data.id
+    jwt.verify(token, SecretKey, {}, async (err, data) => {
+      if (err) {
+        throw err; // Throw the error within the callback
+      }
+      const newPost = await Post.create({
+        title,
+        summary,
+        post,
+        postImage: newFilename,
+        author: data.id
+      });
+      res.json({ newPost });
     });
-    res.json({ newPost });
-  });
-
-  // Create a new post object using the Post model
-
+  } catch (error) {
+    // Handle any errors that occur during the execution
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while creating the post." });
+  }
 });
 
 app.put("/post/:id", uploadMiddleware.single("postImage"), async (req, res) => {
