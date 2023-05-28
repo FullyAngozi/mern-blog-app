@@ -18,7 +18,7 @@ const config = require('./config.js')
 
 // Middleware setup
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "https://6473aff4c2068c71ec81ec3e--tranquil-axolotl-bb6006.netlify.app" }));
+app.use(cors({ credentials: true, origin: "https://angoblog.netlify.app" }));
 app.use(cookieParser());
 app.use(express.static('uploads'))
 const uploadMiddleware = multer({ dest: "uploads/" });
