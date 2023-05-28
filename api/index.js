@@ -11,6 +11,9 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const config = require('../config.js')
+
+
 
 
 // Middleware setup
@@ -22,11 +25,11 @@ const uploadMiddleware = multer({ dest: "uploads/" });
 
 // Constants for password hashing and token generation
 const salt = bcrypt.genSaltSync(10);
-const SecretKey = "njknc1o22339kfem2m332cfvn";
+const SecretKey = config.SecretKey;
 
 // Connect to MongoDB
 mongoose.connect(
-  "mongodb+srv://ochukoangozi:96q6W4S3hoXZTMXh@cluster0.ybvmlox.mongodb.net/?retryWrites=true&w=majority"
+  config.MONGODB_URI
 );
 
 // Route for user registration
@@ -172,4 +175,4 @@ app.get('/post/:id', async (req, res) => {
 
 
 // Start the server
-app.listen(4000);
+app.listen(config.PORT);
